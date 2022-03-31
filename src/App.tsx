@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.scss";
+import DocView from "./components/DocView";
+import Sidebar from "./components/Sidebar";
+import SidebarItem from "./components/SidebarItem";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+	render() {
+		return (
+			<React.Fragment>
+				<Sidebar>
+					<SidebarItem name="Item 1" />
+					<SidebarItem name="Item 2" />
+
+					<SidebarItem name="Item Group" expanded={true}>
+						<SidebarItem name="Item 3" />
+						<SidebarItem name="Item 4" />
+
+						<SidebarItem name="Item Group 222222">
+							<SidebarItem name="Item 5" />
+							<SidebarItem name="Item 6" />
+						</SidebarItem>
+					</SidebarItem>
+				</Sidebar>
+
+				<DocView>
+					<h1>Some header</h1>
+					some text
+					<blockquote>
+						some quote <code>some code</code>
+					</blockquote>
+					<pre>
+						some code here
+						<br />
+						which is multiline
+					</pre>
+				</DocView>
+			</React.Fragment>
+		);
+	}
 }
-
-export default App;

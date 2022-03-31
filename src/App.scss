@@ -1,0 +1,30 @@
+.Sidebar {
+	overflow: auto;
+	width: min(30%, 300px);
+	margin: 10px 0 10px 10px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 1px var(--shadow-color);
+	transition: margin 0.2s ease-in-out, width 0.2s ease-in-out;
+}
+
+.DocView {
+	overflow: auto;
+	width: 65%;
+	margin: 10px auto 10px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 1px var(--shadow-color);
+	transition: margin 0.2s ease-in-out, width 0.2s ease-in-out;
+}
+
+@media (max-width: 720px) {
+	// .Sidebar {
+	// 	width: calc(100% - 20px);
+	// 	// margin-left: calc(-100%);
+	// }
+
+	// .DocView {
+	// 	width: calc(100% - 20px);
+	// 	margin: 10px;
+	// 	margin-right: calc(-100%);
+	// }
+}

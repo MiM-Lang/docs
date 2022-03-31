@@ -1,0 +1,9 @@
+.Icon {
+	display: inline-block;
+	line-height: 0;
+	transition: transform 0.2s ease-in-out;
+
+	&::before {
+		vertical-align: middle;
+	}
+}

@@ -1,0 +1,18 @@
+@use "sass:color";
+
+html.theme-light {
+	--background-color: whitesmoke;
+
+	--sidebar-background-color: white;
+	--sidebar-item-background-color: transparent;
+	--sidebar-item-hover-background-color: #{rgba(springgreen, 40%)};
+
+	--docview-background-color: white;
+	--docview-heading-border-color: lightgray;
+	--docview-blockquote-border-color: #{darken(springgreen, 10%)};
+	--docview-blockquote-background-color: #{rgba(springgreen, 10%)};
+	--docview-code-background-color: #{lighten(black, 95%)};
+	--docview-pre-background-color: #{lighten(black, 95%)};
+
+	--shadow-color: rgba(0, 0, 0, 0.2);
+}
