@@ -1,3 +1,5 @@
+@use "../utils";
+
 .DocView {
 	&,
 	& * {
@@ -7,7 +9,9 @@
 	}
 
 	background-color: var(--docview-background-color);
-	padding: 10px;
+	padding: 0 10px 10px 10px;
+	border-top: 10px solid transparent;
+	@include utils.custom-scrollbar;
 
 	& :is(h1, h2, h3, h4, h5, h6) {
 		padding: 10px;
@@ -38,6 +42,7 @@
 	}
 
 	& pre {
+		overflow: auto;
 		padding: 10px;
 		border-radius: 5px;
 		background-color: var(--docview-pre-background-color);
@@ -46,4 +51,31 @@
 		line-height: 1.5;
 		margin: 10px 5px;
 	}
+
+	& a {
+		color: var(--docview-link-color);
+		text-decoration: none;
+		transition: color 0.2s ease-in-out;
+
+		&:hover {
+			color: var(--docview-link-hover-color);
+			text-decoration: underline;
+		}
+	}
+}
+
+.DocView_title {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	background-color: var(--docview-title-background-color);
+	padding: 10px;
+	border-bottom: 1px solid var(--docview-title-border-color);
+	margin-bottom: 20px;
+	color: var(--docview-title-color);
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	box-shadow: 0 5px 5px -2.5px var(--shadow-color);
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.scss";
+import CodeBlock from "./components/CodeBlock";
 import DocView from "./components/DocView";
 import Sidebar from "./components/Sidebar";
 import SidebarItem from "./components/SidebarItem";
@@ -23,7 +24,7 @@ export default class App extends Component {
 					</SidebarItem>
 				</Sidebar>
 
-				<DocView>
+				<DocView title="Introduction">
 					<h1>Some header</h1>
 					some text
 					<blockquote>
@@ -34,6 +35,18 @@ export default class App extends Component {
 						<br />
 						which is multiline
 					</pre>
+					<a href="#">some link</a>
+					<CodeBlock language="C++">
+						#include <i>&lt;iostream&gt;</i>
+						<br />
+						int main() &#123;
+						<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;std::cout &lt;&lt; "Hello, world!" &lt;&lt; std::endl;
+						<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;return 0;
+						<br />
+						&#125;
+					</CodeBlock>
 				</DocView>
 			</React.Fragment>
 		);

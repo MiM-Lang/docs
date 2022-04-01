@@ -42,6 +42,10 @@ export default class SidebarItem extends React.Component<Props, State> {
 		this.setState({ deepHover: false });
 	};
 
+	private stopPropagation = (e: React.MouseEvent) => {
+		e.stopPropagation();
+	};
+
 	private get iconRotation() {
 		if (this.props.children) return this.state.expanded ? 90 : 0;
 		else return 0;
@@ -72,7 +76,7 @@ export default class SidebarItem extends React.Component<Props, State> {
 				{this.props.name}
 
 				{this.props.children && (
-					<div className="children" style={{ height: this.childrenHeight, paddingTop: this.childrenTopPadding }}>
+					<div className="children" style={{ height: this.childrenHeight, paddingTop: this.childrenTopPadding }} onMouseOver={this.stopPropagation}>
 						{this.props.children}
 					</div>
 				)}

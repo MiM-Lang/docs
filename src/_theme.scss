@@ -13,6 +13,18 @@ html.theme-light {
 	--docview-blockquote-background-color: #{rgba(springgreen, 10%)};
 	--docview-code-background-color: #{lighten(black, 95%)};
 	--docview-pre-background-color: #{lighten(black, 95%)};
+	--docview-link-color: dodgerblue;
+	--docview-link-hover-color: #{darken(dodgerblue, 20%)};
+	--docview-title-background-color: white;
+	--docview-title-border-color: lightgray;
+	--docview-title-color: black;
 
 	--shadow-color: rgba(0, 0, 0, 0.2);
+
+	--app-scrollbar-background-color: transparent;
+	--app-scrollbar-hover-background-color: #{rgba(black, 10%)};
+	--app-scrollbar-opacity: 1;
+	--app-scrollbar-thumb-background-color: #{rgba(black, 20%)};
+	--app-scrollbar-thumb-hover-background-color: #{rgba(black, 30%)};
+	--app-scrollbar-thumb-opacity: 1;
 }

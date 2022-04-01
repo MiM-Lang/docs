@@ -5,6 +5,7 @@ interface Props {
 	glyph: string;
 	size?: number;
 	rotation?: number;
+	onClick?: (e: React.MouseEvent) => void;
 }
 
 export default class Icon extends React.Component<Props> {
@@ -17,6 +18,6 @@ export default class Icon extends React.Component<Props> {
 	}
 
 	render() {
-		return <span className={`Icon ${styles.Icon} bi bi-${this.props.glyph}`} style={{ fontSize: this.size, transform: this.rotation }} />;
+		return <span className={`Icon ${styles.Icon} bi bi-${this.props.glyph}`} style={{ fontSize: this.size, transform: this.rotation }} onClick={this.props.onClick} />;
 	}
 }
