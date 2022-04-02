@@ -1,53 +1,69 @@
 import React, { Component } from "react";
 import "./App.scss";
-import CodeBlock from "./components/CodeBlock";
 import DocView from "./components/DocView";
 import Sidebar from "./components/Sidebar";
 import SidebarItem from "./components/SidebarItem";
+import pages, { Page } from "./docs";
 
-export default class App extends Component {
+interface AppProps {}
+
+interface AppState {
+	pageId: string;
+}
+
+export default class App extends Component<AppProps, AppState> {
+	constructor(props: AppProps) {
+		super(props);
+		this.state = {
+			pageId: "0",
+		};
+	}
+
+	private parseChildren(page: Page, key: string) {
+		return page.children?.map((child, index) => {
+			const childKey = `${key}-${index}`;
+			const isActive = this.state.pageId.startsWith(childKey);
+
+			return (
+				<SidebarItem key={childKey} id={childKey} name={child.title} onClick={this.updateDocView} active={isActive} expanded={isActive}>
+					{this.parseChildren(child, childKey)}
+				</SidebarItem>
+			);
+		});
+	}
+
+	private get sidebarItems() {
+		return pages.map((page, index) => {
+			const key = `${index}`;
+			const isActive = this.state.pageId.startsWith(key);
+
+			return (
+				<SidebarItem key={key} id={key} name={page.title} onClick={this.updateDocView} active={isActive} expanded={isActive}>
+					{this.parseChildren(page, key)}
+				</SidebarItem>
+			);
+		});
+	}
+
+	private get docView() {
+		const pageIds = this.state.pageId.split("-");
+		let targetPage: Page;
+		pageIds.forEach((id) => {
+			targetPage = targetPage ? targetPage.children![+id] : pages[+id];
+		});
+
+		return <DocView title={targetPage!.title}>{targetPage!.content}</DocView>;
+	}
+
+	private updateDocView = (pageId?: string) => {
+		this.setState({ pageId: pageId! });
+	};
+
 	render() {
 		return (
 			<React.Fragment>
-				<Sidebar>
-					<SidebarItem name="Item 1" />
-					<SidebarItem name="Item 2" />
-
-					<SidebarItem name="Item Group" expanded={true}>
-						<SidebarItem name="Item 3" />
-						<SidebarItem name="Item 4" />
-
-						<SidebarItem name="Item Group 222222">
-							<SidebarItem name="Item 5" />
-							<SidebarItem name="Item 6" />
-						</SidebarItem>
-					</SidebarItem>
-				</Sidebar>
-
-				<DocView title="Introduction">
-					<h1>Some header</h1>
-					some text
-					<blockquote>
-						some quote <code>some code</code>
-					</blockquote>
-					<pre>
-						some code here
-						<br />
-						which is multiline
-					</pre>
-					<a href="#">some link</a>
-					<CodeBlock language="C++">
-						#include <i>&lt;iostream&gt;</i>
-						<br />
-						int main() &#123;
-						<br />
-						&nbsp;&nbsp;&nbsp;&nbsp;std::cout &lt;&lt; "Hello, world!" &lt;&lt; std::endl;
-						<br />
-						&nbsp;&nbsp;&nbsp;&nbsp;return 0;
-						<br />
-						&#125;
-					</CodeBlock>
-				</DocView>
+				<Sidebar>{this.sidebarItems}</Sidebar>
+				{this.docView}
 			</React.Fragment>
 		);
 	}
